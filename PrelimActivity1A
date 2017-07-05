@@ -1,0 +1,43 @@
+package powermeter.java;
+
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.*;
+import java.io.*;
+
+
+public class PowerMeterJava {
+  
+    public static void main(String[] args) throws Exception {
+        Scanner scan = new Scanner(new File("scsy.in")); //Input File
+       
+        int n = scan.nextInt(); // returns int scanned for input
+        Integer[] arr = new Integer[n]; // value for array
+        for(int i=0;i<n; i++) { // reading the array
+          arr[i] = scan.nextInt();
+        }
+        Arrays.sort(arr, Collections.reverseOrder());// Sorts array from highest to lowest
+        System.out.println("");
+        System.out.println("Sample Output"); 
+       for(int i: arr){ // Prints the array
+            System.out.println(i);   
+        }
+        int c=0;
+        for (Integer arr1 : arr) {
+            // Scan each input if its over 9000 or not
+            if (arr1 >= 9000) {
+                c++;
+            }
+        }
+        if(c>0){
+                
+            System.out.println("It's over 9000!");
+
+        }
+        else{
+            System.out.println("No one is over 9000!");
+        }
+    }
+}
+    
