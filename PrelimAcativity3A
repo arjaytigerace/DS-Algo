@@ -1,0 +1,46 @@
+/*
+ * CORNELIO, RAENIEL JAN A.
+    IT3A
+Problem: File input needs to be outputed on Game Night
+ */
+package prelimactivity3a_cornelio;
+
+import java.util.*;
+import java.io.*;
+
+public class PrelimActivity3A_Cornelio {
+
+    /**
+     * @param args the command line arguments
+     * @throws java.lang.Exception
+     */
+    public static void main(String[] args) throws Exception {
+       String content = new String();
+        
+        Scanner scan = new Scanner (new File("gntn.in"));// file
+        int n = scan.nextInt();// scans for number of inputs
+        
+        IntSLList list = new IntSLList(); // Initiates List
+        for(int i = 0; i < n; i++){ // Scan the first letters of each line
+            char a = scan.next().charAt(0); // assigns a as first letter
+            String name = scan.nextLine(); // scans next line
+            
+            if(a == 'D') // figures out if add to head or add to tail
+                list.addToHead(name);
+            else
+                list.addToTail(name);
+        }
+        
+        
+        
+        
+
+       
+        list.printAll(); // Prints all
+        
+        
+     
+        
+    }
+    
+}
