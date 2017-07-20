@@ -1,0 +1,73 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package prl4;
+
+import java.util.*;
+import java.io.*;
+
+public class PrL4 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args)throws IOException {
+        FileReader read = new FileReader("pckq.in"); //Finds the input file
+        
+        Scanner scan = new Scanner(read); //scanning the input
+        
+        StringQueue small = new StringQueue("");    // Creates the list
+        small.dequeueObj();                         // and dequeues it so
+                                                    // it can be empty
+        StringQueue medium = new StringQueue("");   //
+        medium.dequeueObj();                        //
+                                                    //
+        StringQueue large = new StringQueue("");    //
+        large.dequeueObj();                         //
+        
+        int val = 0;                                //Counter Values
+        int sCnt = 0;                               //
+        int mCnt = 0;                               //
+        int lCnt = 0;                               //
+        
+        while(scan.hasNextLine()){
+            String a = scan.nextLine();
+            if(a.equals("Pack-Queue")){
+                System.out.println("Small - " + sCnt + " Packages");
+                small.printQueue();
+                
+                System.out.println();
+                
+                System.out.println("Medium - " + mCnt + " Packages");
+                medium.printQueue();
+                
+                System.out.println();
+                
+                System.out.println("Large - " + lCnt + " Packages");
+                large.printQueue();
+                
+                System.out.println();
+            }
+            else{
+                switch (a.charAt(10)) {
+                    case 'S':
+                        small.enqueueObj(a.replace("Small", ""));
+                        sCnt++;
+                        break;
+                    case 'M':
+                        medium.enqueueObj(a.replace("Medium", ""));
+                        mCnt++;
+                        break;
+                    default:
+                        large.enqueueObj(a.replace("Large", ""));
+                        lCnt++;
+                        break;
+                }
+            }
+            
+        }
+    }
+    
+}
