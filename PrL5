@@ -1,0 +1,100 @@
+
+//CORNELIO, RAENIEL JAN A.
+//INTEC 3A
+//July 21, 2017
+//This program gets the list input and then enqueues them into Small, Medium and Large categories
+//After enqueuing they are then dequeued so that each category is reduced by a number of times
+//when a certain word comes up. The output is then the category plus the count of packages
+// and then shows the packages that were categorized.
+
+package prl5cornelio;
+
+import java.io.*;
+import java.util.*;
+
+/**
+ *
+ * @author rjacornelio
+ */
+public class PrL5Cornelio {
+
+    /**
+     * @param args the command line arguments
+     * @throws java.io.IOException
+     */
+    public static void main(String[] args)throws IOException {
+        FileReader read = new FileReader("pckq2.in"); //Finds the input file
+        
+        Scanner scan = new Scanner(read); //scanning the input
+        
+        StringQueue small = new StringQueue();          // Creates the list
+                                                         // and dequeues it so
+                                                         // it can be empty
+        StringQueue medium = new StringQueue();   
+                               
+                                                    
+        StringQueue large = new StringQueue();    
+                                
+        
+                                                    
+        int sCnt = 0;                               //Counter Values
+        int mCnt = 0;                               //
+        int lCnt = 0;                               //
+        
+        while(scan.hasNextLine()){ //Starts the workaround of the output
+            String a = scan.nextLine();
+            
+            if(a.contains("Small")){
+                small.enqueueObj(a);
+                sCnt++;
+            }
+            else if(a.contains("Medium")){
+                medium.enqueueObj(a);
+                mCnt++;
+            }
+            else if(a.contains("Large")){
+                large.enqueueObj(a);
+                lCnt++;
+            }
+            switch (a) {
+                case "PDS":
+                    small.dequeueObj();
+                    sCnt--;
+                    break;
+                case "PDM":
+                    medium.dequeueObj();
+                    mCnt--;
+                    break;
+                case "PDL":
+                    large.dequeueObj();
+                    lCnt--;
+                    break;
+                default:
+                    break;
+            }
+            
+            
+            if(a.equals("Pack-Queue")){
+                System.out.println("Small - " + sCnt + " Packages");
+                small.printQueue();
+                
+                System.out.println();
+                
+                System.out.println("Medium - " + mCnt + " Packages");
+                medium.printQueue();
+                
+                System.out.println();
+                
+                System.out.println("Large - " + lCnt + " Packages");
+                large.printQueue();
+                
+                System.out.println();
+            }
+            
+            
+            
+            
+        } 
+    }
+    
+}
