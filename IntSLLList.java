@@ -3,36 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prelimexam_cornelio;
+package midlab2_cornelio;
 
 /**
  *
  * @author raeni
  */
-public class IntSLLList {
-        protected IntSLLNode head, tail;
-    public IntSLLList() {
+public class IntSLList {
+    protected IntSLNode head, tail;
+    public IntSLList() {
         head = tail = null;
     }
     
     public void addtoHead(int el){
-        head = new IntSLLNode(el, head);
+        head = new IntSLNode(el, head);
         if (tail == null)
             tail = head;
     }
 
     public void addtoTail(int el){
         if (!isEmpty()){
-            tail.next = new IntSLLNode(el);
+            tail.next = new IntSLNode(el);
             tail = tail.next;
         }
-        else head = tail = new IntSLLNode(el);
+        else head = tail = new IntSLNode(el);
     }
 
     public void printAll(){
-    for(IntSLLNode tmp = head; tmp !=  
+    for(IntSLNode tmp = head; tmp !=  
                          null; tmp = tmp.next)
-            System.out.println(tmp.info + " ");
+            System.out.print(tmp.info + " ");
+            System.out.println();
         
     }
 
@@ -53,12 +54,11 @@ public class IntSLLList {
         if (head == tail)
             head = tail = null;
         else {
-            IntSLLNode tmp;
+            IntSLNode tmp;
             for (tmp = head; tmp.next != tail; tmp=tmp.next);
             tail = tmp;
             tail.next = null;
         }
         return el;
     } 
-
 }
