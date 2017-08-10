@@ -1,0 +1,105 @@
+//Raeniel Cornelio
+//Intec 3A
+//8-9-17
+//This program sorts the inputs through either bubble or insertion sort.
+
+package midlab2_cornelio;
+
+import java.util.*;
+
+
+public class MidLab2_Cornelio {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        IntSLList unsorted = new IntSLList();
+        IntSLList sorted = new IntSLList();
+        MidLab2_Cornelio a = new MidLab2_Cornelio();
+        
+        int addnum = 0;
+        
+        String b = "";
+        
+        while(!(b.contains("Bubble") || b.contains("Insert"))){
+            if(scan.hasNextInt()){
+                addnum = scan.nextInt();
+                unsorted.addtoTail(addnum);
+            }
+            else{
+                b = scan.nextLine();
+            }
+        }
+        System.out.print("List before sorting: ");
+        unsorted.printAll();
+      
+        
+        if(b.contains("Bubble")){
+            System.out.print("List after Bubble sort: ");
+            a.bubble(unsorted);
+            unsorted.printAll();
+        }
+        else if(b.contains("Insert")){
+            System.out.print("List after Insertion sort: ");
+            a.insertion(unsorted);
+            unsorted.printAll();
+        }
+    }
+    
+    public void bubble(IntSLList bub){
+        for(IntSLNode current = bub.head; current != null; current = current.next){
+            for(IntSLNode next = bub.head; next != null; next = next.next){
+                if(current.info < next.info){
+                    int swap = current.info;
+                    current.info = next.info;
+                    next.info = swap;
+                }
+            }
+        }
+    }
+    
+    public IntSLNode getNodeposition(IntSLList list, int compare){
+        IntSLNode position = list.head;
+        while(compare > position.info){
+            position = position.next;
+        }
+        return position;
+    }
+    
+    public int remUnsorted(IntSLList list, int compare){
+        IntSLNode position = list.head;
+        int c = 0;
+        while(compare > position.info){
+            position = position.next;
+            c++;
+        }
+        c++;
+        return c;
+    }
+    
+    public void insertion(IntSLList list){
+        IntSLNode tmp2;
+        int index = 0;
+        for(IntSLNode tmp = list.head; tmp != null; tmp = tmp.next){
+            tmp2 = getNodeposition(list, tmp.info);
+            if(tmp2.info >= tmp.info){
+                int store = tmp.info;
+                int store2 = tmp2.info;
+                tmp2.info = store;
+                store = store2;
+                tmp2 = tmp2.next;
+                
+                for(int d = remUnsorted(list, tmp.info); d <= index; d++){
+                    store = tmp2.info;
+                    tmp2.info = store;
+                    store = store2;
+                    tmp2 = tmp2.next;
+                }
+            }
+            index++;
+        }
+    }
+    
+}
