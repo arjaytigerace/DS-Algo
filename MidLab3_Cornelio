@@ -1,0 +1,52 @@
+//CORNELIO, RAENIEL JAN A.
+//INTEC 3-A
+//9-6-17
+//This program will get input from a file and will proceed with multiplying the
+//numbers given. First it reads the how many times does the file input. Next after getting how many times it will read, it will convert
+//the lines into string and will proceed to split them into two wherever it finds a space. After spliting, the numbers splitted on a certain
+//index and assign it to the variable a and b. While doing so the variables will be converted from string to int using parseInt.
+//It will then call on to the recursive function to multiply variable a and b. Then it will call on the recursive exponential function
+//To multiply the first number by how many times the second number stated. The last operation will have to multiply the first output and the
+//Second output of the program.
+package midlab3_cornelio;
+
+import java.util.*;
+import java.io.*;
+
+
+public class MidLab3_Cornelio {
+
+    
+    public static int multiply(int a, int b) {
+    if(a == 0 || b == 0) 
+        return 0;
+    else
+        return a + multiply(a, b - 1);
+}   
+    public static int expo(int base, int power){
+       if(power == 0) 
+        return 1;
+    else
+        return base * expo(base, power - 1);
+    }
+     
+    public static void main(String[] args) throws IOException {
+        // int i = 5;
+        MidLab3_Cornelio test1 = new MidLab3_Cornelio();
+        //test1.nonTail(i);
+        Scanner scan = new Scanner(new File("mtp.in"));
+        int n = scan.nextInt();
+        scan.nextLine();
+        while(n > 0){
+            String[] string1 = scan.nextLine().split(" ");
+            int a = Integer.parseInt(string1[0]);
+            int b = Integer.parseInt(string1[1]);
+            
+            System.out.println(multiply(a, b) + " "
+                    + expo(a,b) + " " +
+                    multiply(multiply(a, b),expo(a,b)));
+            n--;  
+    }       
+}
+}
+
